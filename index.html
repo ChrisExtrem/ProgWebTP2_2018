@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <title>Trabajo Practico Nro 2</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://bootswatch.com/4/flatly/bootstrap.min.css"> <!--BootsWatch Flaty-->
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body class="container">
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+                <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation"></button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                  <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#">Developers </a>
+                    </li>
+                  </ul>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="row pt-3"><!--Row Superior-->
+                <div class="col col-lg-10"><!--Col-lg-10-->
+                    <form id="myForm" class="form-inline">
+                        <div class="form-group">
+                            <!--<label for="inputPassword2" class="sr-only">hhhhhhh</label>-->
+                            <input type="text" class="form-control" id="busqueda" placeholder="Ingrese Nombre">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Buscar!</button>
+                        <select id="genero" class="custom-select">
+                            <option value="unknow" selected>Seleccione Sexo</option>
+                            <option value="male">Hombre</option>
+                            <option value="female">Mujer</option>
+                        </select>
+                    </form>
+                </div><!--End Col-lg-2-->
+            </div><!--End Row Superior-->
+            <div id="listaUsuarios" class="row my-3"><!--Row Inferior-->
+                
+            </div>
+        </main>
+        <footer>
+
+        </footer>
+
+        
+        <!-- Optional JavaScript -->
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script src="js/main.js"></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    </body>
+</html>
