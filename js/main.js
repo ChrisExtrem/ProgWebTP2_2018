@@ -24,13 +24,6 @@ var cargarPrimerosUsuarios = function(){
 var cargarUsuarios = function(usuarios){
     let cards='';
     usuarios.forEach(user => {
-        /*let nombre=user.name.first;
-        let apellido=user.name.last;
-        let titulo=user.name.title;
-        let usuario=user.login.username
-        let telefono=user.phone;
-        let correo=user.email;
-        let foto=user.picture.thumbnail;*/
         cards+=`
         <div class="col-md-4">
             <div class="card">
@@ -79,14 +72,17 @@ var filterByText = function(array,buscado){
     return resultado;
 }
 
-//Subscripcion a Eventos
-var frm = document.getElementById('myForm');
-frm.addEventListener('submit',function(evento){
+var buscar = function(evento){
     evento.preventDefault();
     let txt=document.getElementById('busqueda').value.toLowerCase();
     let sexo=document.getElementById('genero').value.toLowerCase();
-    console.log(txt);
-    console.log(sexo);
     cargarUsuarios(filtrar(txt,sexo));
-    console.log(data);
-});
+}
+
+var volver = function(){
+    cargarPrimerosUsuarios();
+}
+
+//Subscripcion a Eventos
+document.getElementById('myForm').addEventListener('submit',buscar);
+document.getElementById('btnVolver').addEventListener('click', volver);

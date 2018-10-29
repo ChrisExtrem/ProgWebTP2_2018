@@ -14,15 +14,15 @@
     <body class="container">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-                <button class="navbar-toggler hidden-lg-up" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-                    aria-expanded="false" aria-label="Toggle navigation"></button>
+                <button id="myButton" class="navbar-toggler hidden-lg-up btn btn-info btn-lg" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
+                    aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                   <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
                       <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Developers </a>
+                      <a class="nav-link" href="integrantes.html">Developers </a>
                     </li>
                   </ul>
                 </div>
@@ -49,8 +49,12 @@
                 
             </div>
         </main>
-        <footer>
-
+        <footer class="bg-primary footer fixed-bottom">
+            <div class="row py-2 px-4">
+                <div class="col col-lg-12">
+                    <button type="button" id="btnVolver" class="btn btn-light float-right" value="Volver">Volver</button>
+                </div>
+            </div>
         </footer>
 
         
