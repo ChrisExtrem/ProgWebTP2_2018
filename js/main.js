@@ -16,9 +16,9 @@ fetch(url)
     );
 
 //Funciones
-var cargarPrimerosUsuarios = function(){
+var obtenerPrimerosUsuarios = function(){
     let primerosUsuarios=data.slice(0,10);
-    cargarUsuarios(primerosUsuarios);
+    return primerosUsuarios;
 }
 
 var cargarUsuarios = function(usuarios){
@@ -47,29 +47,31 @@ var cargarUsuarios = function(usuarios){
 
 var filtrar = function(buscado,genero){
     let resultado,tmp;
-    if(genero=='unknow')
-    {
-        console.log('Sin Seleccioar Genero');
-        resultado=filterByText(data,buscado);
-        console.log(resultado); 
+    if(buscado==''){
+        tmp=obtenerPrimerosUsuarios();
+    }else{
+        tmp=filterByText(data,buscado);
     }
-    if(genero=='male'){
-        tmp=data.filter(elemento => {return elemento.gender=='male'});
-        resultado=filterByText(tmp,buscado);
-        console.log(resultado); 
-        }
-    if(genero=='female'){
-        tmp=data.filter(elemento => {return elemento.gender=='female'});
-        resultado=filterByText(tmp,buscado);
-        console.log(resultado); 
-    }
+    resultado=filterByGender(tmp,genero);
     return resultado;
 }
 
 var filterByText = function(array,buscado){
     let resultado = array.filter(elemento => {return (elemento.name.first==buscado)||(elemento.name.last==buscado)})
-    console.log(resultado);
     return resultado;
+}
+
+var filterByGender = function(array,genero){
+    if(genero=='unknow')
+    {
+        return array;
+    }else{ //Inicio Else
+        if(genero=='male'){//Inicio If Interior
+            return array.filter(elemento => {return elemento.gender=='male'});
+            }else{//Fin If Interior | Inicio Else Interior
+            return array.filter(elemento => {return elemento.gender=='female'});
+        }//Fin Else Interior
+    }//Fin Else
 }
 
 var buscar = function(evento){
@@ -80,7 +82,7 @@ var buscar = function(evento){
 }
 
 var volver = function(){
-    cargarPrimerosUsuarios();
+    cargarUsuarios(obtenerPrimerosUsuarios());
 }
 
 //Subscripcion a Eventos
