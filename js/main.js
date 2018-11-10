@@ -11,7 +11,7 @@ fetch(url)
     .then(
         function(myJson){
             data=myJson.results;
-            cargarPrimerosUsuarios();
+            cargarUsuarios(obtenerPrimerosUsuarios());
         }
     );
 
@@ -57,7 +57,7 @@ var filtrar = function(buscado,genero){
 }
 
 var filterByText = function(array,buscado){
-    let resultado = array.filter(elemento => {return (elemento.name.first==buscado)||(elemento.name.last==buscado)})
+    let resultado = array.filter(elemento => {return (elemento.name.first.includes(buscado)||elemento.name.last.includes(buscado))})
     return resultado;
 }
 
