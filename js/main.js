@@ -26,20 +26,65 @@ var cargarUsuarios = function(usuarios){
     usuarios.forEach(user => {
         cards+=`
         <div class="col-md-4">
-            <div class="card">
-                <img src="${user.picture.large}" alt="" class="rounded-circle card-img-top mx-auto">
-                <br>
-                <div class="card-body">
-                    <h5 class="card-title text-center">${user.name.title} ${user.name.first} ${user.name.last}</h5>
-                    <h6 class="card-subtitle mb-2 text-muted"><b>username:</b> ${user.login.username}</h6>
-                    <p class="card-text">
-                        <b>Phone:</b> ${user.phone}<br>
-                        <b>Email:</b> ${user.email}<br>
-                    </p>
-                </div>
-            </div>
+        <div class="card"><!--Inicio Card-->
+            <img src="${user.picture.large}" alt="" class="mt-3 rounded-circle card-img-top mx-auto">
             <br>
-        </div>`;
+            <div class="card-body"><!--Inicio Card Body-->
+                <h5 class="card-title text-center">${user.name.title} ${user.name.first} ${user.name.last}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><b>username:</b> ${user.login.username}</h6>
+                <p class="card-text">
+                    <b>Phone:</b> ${user.phone}<br>
+                    <b>Email:</b> ${user.email}<br>
+                </p>
+            </div><!--Fin Card Body-->
+
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary w-50 mx-auto mb-3" data-toggle="modal" data-target="#${user.login.username}ModalCenter">
+              Ver Detalles
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="${user.login.username}ModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Detalles Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="card"> <!--CardInterno-->
+                        <img src="${user.picture.large}" alt="" class="mt-1 rounded-circle card-img-top mx-auto">
+                        <br>
+                        <div class="card-body"><!--Inicio Card Body-->
+                            <h5 class="card-title text-center">${user.name.title} ${user.name.first} ${user.name.last}</h5>
+                            <h6 class="card-subtitle mb-2 text-muted"><b>username:</b> ${user.login.username}</h6>
+                            <p class="card-text">
+                                <b>Contraseña: </b>${user.login.password}<br>
+                                <b>Email:</b> ${user.email}<br>
+                                <b>Telefono:</b> ${user.phone}<br>
+                                <b>Celular:</b> ${user.cell}<br>
+                                <b>Cumpleaños:</b> ${user.dob.date}<br>
+                                <b>Domicilio:</b> ${user.location.street} <br>
+                                <b>Ciudad:</b> ${user.location.city}<br>
+                            </p><!--FinCardInterno-->  
+                        </div><!--Fin Card Body-->
+
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+        </div><!--Fin Card-->
+
+        <br>
+    </div>`;
     });
     console.log(cards);
     document.getElementById('listaUsuarios').innerHTML=cards;
@@ -47,7 +92,7 @@ var cargarUsuarios = function(usuarios){
 
 var filtrar = function(buscado,genero){
     let resultado,tmp;
-    if(buscado==''){
+    if(buscado.trim()==''){
         tmp=obtenerPrimerosUsuarios();
     }else{
         tmp=filterByText(data,buscado);
@@ -57,8 +102,27 @@ var filtrar = function(buscado,genero){
 }
 
 var filterByText = function(array,buscado){
-    let resultado = array.filter(elemento => {return (elemento.name.first.includes(buscado)||elemento.name.last.includes(buscado))})
+    let resultado;
+    let texto=buscado.trim().split(" ");
+    if(texto[1]==null){
+        resultado=array.filter(elemento => {return isIncluded(elemento,texto[0])});
+    }else{
+        let subTexto=texto.slice(1);
+        resultado= array.filter(elemento => {return isIncluded(elemento,texto[0]) && isIncludedLast(elemento,subTexto)});
+    }
     return resultado;
+}
+
+var isIncluded = function(elemento,palabra){
+    let valor=false;
+    if(elemento.name.first.includes(palabra)||elemento.name.last.includes(palabra)) valor=true;
+    return valor;
+}
+
+var isIncludedLast = function(elemento,arrayPalabras){
+    let valor=false;
+    arrayPalabras.forEach(palabra =>{if(elemento.name.last.includes(palabra)) valor=true;});
+    return valor;
 }
 
 var filterByGender = function(array,genero){
